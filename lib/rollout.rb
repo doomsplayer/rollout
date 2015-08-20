@@ -43,7 +43,7 @@ class Rollout
       @groups.delete(group.to_sym)
     end
 
-    def add_locale(locale, percentage)
+    def add_locale(locale, percentage = nil)
       @locales = @locales.select { |l| l.split(":")[0] == locale }
       @locales << "#{locale}:#{percentage}"
     end
@@ -184,7 +184,7 @@ class Rollout
     feature.active?(self, user)
   end
      
-  def activate_locale(feature, locale, percentage)
+  def activate_locale(feature, locale, percentage = nil)
     with_feature(feature) do |f|
       f.add_locale(locale, percentage)
     end
